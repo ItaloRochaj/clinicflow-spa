@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Plus, Calendar, Clock, Filter, Search } from 'lucide-react';
+import { Plus, Calendar as CalendarIcon, Clock, Filter, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export const Appointments: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -123,7 +124,7 @@ export const Appointments: React.FC = () => {
           <Card className="medical-card">
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Calendar className="w-5 h-5 mr-2" />
+                <CalendarIcon className="w-5 h-5 mr-2" />
                 Consultas de Hoje
               </CardTitle>
             </CardHeader>
@@ -211,7 +212,7 @@ export const Appointments: React.FC = () => {
             </CardHeader>
             <CardContent>
               <div className="text-center py-8">
-                <Calendar className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <CalendarIcon className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-medium mb-2">Nenhuma consulta concluída</h3>
                 <p className="text-muted-foreground">
                   As consultas concluídas aparecerão aqui
@@ -234,7 +235,7 @@ export const Appointments: React.FC = () => {
         
         <Card className="medical-card cursor-pointer hover:shadow-md transition-shadow">
           <CardContent className="p-6 text-center">
-            <Calendar className="w-8 h-8 text-primary mx-auto mb-2" />
+            <CalendarIcon className="w-8 h-8 text-primary mx-auto mb-2" />
             <h3 className="font-semibold mb-1">Calendário</h3>
             <p className="text-sm text-muted-foreground">Visualizar agenda completa</p>
           </CardContent>
