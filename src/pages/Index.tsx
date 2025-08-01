@@ -1,14 +1,57 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState } from 'react';
+import { Landing } from './Landing';
+import { Login } from './Login';
+import { Register } from './Register';
+import { MainLayout } from '@/components/layout/MainLayout';
+
+type AppState = 'landing' | 'login' | 'register' | 'app';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
-  );
+  const [currentState, setCurrentState] = useState<AppState>('landing');
+
+  const handleLogin = (email: string, password: string) => {
+    // Simulate login process
+    console.log('Login:', { email, password });
+    setCurrentState('app');
+  };
+
+  const handleRegister = (userData: any) => {
+    // Simulate registration process
+    console.log('Register:', userData);
+    setCurrentState('app');
+  };
+
+  const handleLogout = () => {
+    setCurrentState('landing');
+  };
+
+  switch (currentState) {
+    case 'landing':
+      return (
+        <Landing
+          onNavigateToLogin={() => setCurrentState('login')}
+          onNavigateToRegister={() => setCurrentState('register')}
+        />
+      );
+    case 'login':
+      return (
+        <Login
+          onLogin={handleLogin}
+          onNavigateToRegister={() => setCurrentState('register')}
+        />
+      );
+    case 'register':
+      return (
+        <Register
+          onRegister={handleRegister}
+          onNavigateToLogin={() => setCurrentState('login')}
+        />
+      );
+    case 'app':
+      return <MainLayout onLogout={handleLogout} />;
+    default:
+      return null;
+  }
 };
 
 export default Index;
